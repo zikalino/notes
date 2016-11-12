@@ -1,0 +1,3 @@
+# Index
+
+All kind of notes will go into this repository...

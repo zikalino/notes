@@ -12,6 +12,14 @@ There's even a long document on Raspberry Pi website.
 - Docker
 - Raspberry Pi with Raspian XXX
 
+## Running Docker
+
+Just run following command.
+
+docker run -t -i --name nfs -p 2049:2049 --privileged dockiot/raspbian-nfs /exports
+
+Make sure TCP port 2049 is open in your firewall.
+
 ## What needs to be done on Raspberry Pi that you want to boot from the network?
 
 This part is pretty simple. You just need to change one line of code. I just followed instructions on Raspberry Pi website and I have modified */boot/cmdline.txt*, and added following:
@@ -31,8 +39,13 @@ I have flashed Raspbian again, and modified **cmdline.txt** as follows:
 
 After rebooting Raspberry Pi connected directly to my laptop using port 2049.
 
-## Preparing Docker
+## Running Docker
 
+Just run following command.
+
+docker run -t -i --name nfs -p 2049:2049 --privileged dockiot/raspbian-nfs /exports
+
+Make sure TCP port 2049 is open in your firewall.
 
 ## Other Tools
 

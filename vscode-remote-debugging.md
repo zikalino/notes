@@ -4,3 +4,10 @@ Currently there are issues with attaching gdb remotely. There are bugs in C/C++ 
 
 https://github.com/Microsoft/vscode-cpptools/issues/265
 
+## Some work on debugging in Docker done by Andy Neff:
+
+https://github.com/andyneff/ms-vscode.cpptools
+
+## MIEngine
+
+https://github.com/Microsoft/MIEngine

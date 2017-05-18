@@ -9,6 +9,7 @@
 |Built In Login|YES|YES|-|YES|YES|YES|YES|
 |Create IoT Hub|YES|YES|-|-|YES|YES|YES|
 |Create Device in IoT Hub|YES|YES|YES|YES|YES|YES|YES|
+|Delete Device from IoT Hub|YES|YES|YES|-|YES|YES|?|
 |Monitor D2C Messages|-|YES|YES|-|YES|-|-|
 |Send C2D Messages|-|YES|YES|-|YES|-|-|
 
@@ -33,23 +34,24 @@
 
     npm install -g iothub-explorer
 
-### Disadvantages
+### What it can do?
 
-    login                           start a session on your IoT hub
-    logout                          terminate the current session on your IoT hub
-    list                            list the device identities currently in your IoT hub device registry
-    create <device-id|device-json>  create a device identity in your IoT hub device registry
-    delete <device-id>              delete a device identity from your IoT hub device registry
-    get <device-id>                 get a device identity from your IoT hub device registry
-    import-devices                  import device identities in bulk: local file -> Azure blob storage -> IoT hub
-    export-devices                  export device identities in bulk: IoT hub -> Azure blob storage -> local file
-    send <device-id> <message>      send a message to the device (cloud-to-device/C2D)
-    monitor-feedback                monitor feedback sent by devices to acknowledge cloud-to-device (C2D) messages
-    monitor-events [device-id]      listen to events coming from devices (or one in particular)
-    monitor-uploads                 monitor the file upload notifications endpoint
-    monitor-ops                     listen to the operations monitoring endpoint of your IoT hub instance
-    sas-token <device-id>           generate a SAS Token for the given device
-    simulate-device <device-id>     simulate a device with the specified id
+* login to IoT Hub
+* list the device identities currently in your IoT hub device registry
+* create a device identity in your IoT hub device registry
+* delete a device identity from your IoT hub device registry
+* get a device identity from your IoT hub device registry
+* import device identities in bulk: local file -> Azure blob storage -> IoT hub
+* export device identities in bulk: IoT hub -> Azure blob storage -> local file
+* send a message to the device (cloud-to-device/C2D)
+* monitor feedback sent by devices to acknowledge cloud-to-device (C2D) messages
+* listen to events coming from devices (or one in particular)
+* monitor the file upload notifications endpoint
+* listen to the operations monitoring endpoint of your IoT hub instance
+* generate a SAS Token for the given device
+* simulate a device with the specified id
+
+### Disadvantages
 
 
 ## **Device Explorer**

@@ -20,6 +20,11 @@
 
     npm install -g iothub-explorer
 
+|Feature|<div style="transform:rotate(90deg);transform-origin: left top 0;">Azure Portal</div>|<div style="transform:rotate(90deg);transform-origin: left top 0;">IoT Hub Explorer</div>|C|
+|-------|-|-|-|
+|aa|nn|ii|ss|
+
+
 ### Disadvantages
 
     login                           start a session on your IoT hub
@@ -41,6 +46,8 @@
 
 ## **Device Explorer**
 
+![Device Explorer Data](images/device-explorer-data.png)
+
 ### What it can do?
 * Create and manage devices
 * Monitor messages sent by device
@@ -51,19 +58,6 @@
 ### Disadvantages
 * No simple login, need to get IoT Hub Connection string which has to be obtained using different method
 * Can't create IoT Hub from here
-
-### Configuration
-
-![Device Explorer Configuration](images/device-explorer-configuration.png)
-
-![Device Explorer Management](images/device-explorer-management.png)
-
-![Device Explorer Data](images/device-explorer-data.png)
-
-![Device Explorer Messages To Device](images/device-explorer-messages-to-device.png)
-
-![Device Explorer Call Method on Device](images/device-explorer-call-method-on-device.png)
-
 
 ## Azure CLI
 
@@ -116,6 +110,9 @@ Available from Visual Studio Code Marketplace
 ## **IoT Dashboard**
 
 [Infomation on IoT Dashboard](https://developer.microsoft.com/en-us/windows/iot/docs/iotdashboard)
+
+![Device Explorer Data](images/iot-dashboard-setup.png)
+
 
 ### What it can do?
 

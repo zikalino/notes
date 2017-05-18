@@ -1,5 +1,18 @@
 # IoT Hub Tools
 
+||Azure Portal|IoT Hub Explorer|Device Explorer|Connected Service for IoT Hub|Azure IoT Toolkit for VSC|Azure CLI|IoT Dashboard|
+|-|-|-|-|-|-|-|-|
+|Windows|YES|YES|YES|YES|YES|YES|YES|
+|Linux|YES|YES|-|-|YES|YES|-|
+|Mac OS|YES|YES|-|-|YES|YES|-|
+|Open Source|-|YES|YES|YES|YES|YES|-|
+|Built In Login|YES|YES|-|YES|YES|YES|YES|
+|Create IoT Hub|YES|YES|-|-|YES|YES|YES|
+|Create Device in IoT Hub|YES|YES|YES|YES|YES|YES|YES|
+|Monitor D2C Messages|-|YES|YES|-|YES|-|-|
+|Send C2D Messages|-|YES|YES|-|YES|-|-|
+
+
 ## **Azure Portal**
 
 ### What it can do?
@@ -14,27 +27,11 @@
 
 ### Repository
 
-<table>
-    <th>
-        <td>
-            <div style="transform:rotate(90deg);transform-origin: left top 0;">DUPAXXXXXXXXX</div>
-        </td>
-        <td>
-            <div style="transform:rotate(90deg);transform-origin: left top 0;">DUPA</div>
-        </td>
-    </th>
-</table>
-
 [https://github.com/azure/iothub-explorer](https://github.com/azure/iothub-explorer)
 
 ### Installation
 
     npm install -g iothub-explorer
-
-|Feature|<div style="transform:rotate(90deg);transform-origin: left top 0;">Azure Portal</div>|<div style="transform:rotate(90deg);transform-origin: left top 0;">IoT Hub Explorer</div>|C|
-|-------|-|-|-|
-|aa|nn|ii|ss|
-
 
 ### Disadvantages
 

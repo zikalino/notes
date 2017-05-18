@@ -14,7 +14,16 @@
 
 ### Repository
 
-<div style="transform:rotate(90deg);transform-origin: left top 0;">DUPA</div>
+<table>
+    <th>
+        <td>
+            <div style="transform:rotate(90deg);transform-origin: left top 0;">DUPAXXXXXXXXX</div>
+        </td>
+        <td>
+            <div style="transform:rotate(90deg);transform-origin: left top 0;">DUPA</div>
+        </td>
+    </th>
+</table>
 
 [https://github.com/azure/iothub-explorer](https://github.com/azure/iothub-explorer)
 

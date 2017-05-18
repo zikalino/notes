@@ -18,25 +18,22 @@
 
 ## **Azure Portal**
 
-### What it can do?
-* Create IoT Hub
-* Create devices
+### Overview
+* Managing IoT Hubs
+* Managing Devices
 
 ### Disadvantages
-* Limited monitoring of D2C messages
-* Can't send C2D messages
+* limited monitoring of D2C messages
+* can't send C2D messages
+* complicated and slow
 
 ## **IoT Hub Explorer**
 
-### Repository
+### Overview
 
-[https://github.com/azure/iothub-explorer](https://github.com/azure/iothub-explorer)
+IoT Hub Explorer is a command line tool, written in Node.js.
 
-### Installation
-
-    npm install -g iothub-explorer
-
-### What it can do?
+Following functionality is available:
 
 * login to IoT Hub
 * list the device identities currently in your IoT hub device registry
@@ -52,6 +49,14 @@
 * listen to the operations monitoring endpoint of your IoT hub instance
 * generate a SAS Token for the given device
 * simulate a device with the specified id
+
+### Repository
+
+[https://github.com/azure/iothub-explorer](https://github.com/azure/iothub-explorer)
+
+### Installation
+
+    npm install -g iothub-explorer
 
 ### Disadvantages
 
@@ -81,6 +86,8 @@ This is a generic Azure command line tool.
 * TBD - what else?
 
 ### Disadvantages
+* pretty complex to use
+* JSON output is not easy to read for human
 
 
 ## Azure IoT Toolkit for Visual Studio Code

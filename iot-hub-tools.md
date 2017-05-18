@@ -14,6 +14,8 @@
 
 ### Repository
 
+<div style="transform:rotate(90deg);transform-origin: left top 0;">DUPA</div>
+
 [https://github.com/azure/iothub-explorer](https://github.com/azure/iothub-explorer)
 
 ### Installation

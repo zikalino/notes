@@ -104,3 +104,19 @@ Available from Visual Studio Code Marketplace
 ### Disadvantages
 * can't create IoT Hub
 * no monitoring or sending messages to the device
+
+## **IoT Dashboard**
+
+[Infomation on IoT Dashboard](https://developer.microsoft.com/en-us/windows/iot/docs/iotdashboard)
+
+### What it can do?
+
+* Flash SD card with OS
+* Configure WiFi connection on the device
+* Create IoT Hub
+* Create device in IoT Hub
+* Configure IoT Hub connection on the device
+* Deploy and run samples on the device
+
+### Disadvantages
+* works only with Windows 10 IoT Core

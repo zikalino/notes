@@ -2,8 +2,13 @@
 
 ## **Azure Portal**
 
+### What it can do?
 * Create IoT Hub
 * Create devices
+
+### Disadvantages
+* Limited monitoring of D2C messages
+* Can't send C2D messages
 
 ## **IoT Hub Explorer**
 
@@ -64,3 +69,38 @@
 
 
 
+## Azure IoT Toolkit for Visual Studio Code
+
+Available from Visual Studio Code Marketplace
+
+[https://marketplace.visualstudio.com/items?itemName=formulahendry.azure-iot-toolkit](https://marketplace.visualstudio.com/items?itemName=formulahendry.azure-iot-toolkit)
+
+### What it can do?
+* Send messages to Azure IoT Hub (device-to-cloud message)
+* Monitor device-to-cloud messages
+* Code snippet to send/monitor D2C message for IoT Hub
+* Send messages to Azure Event Hub
+* Monitor Event Hub messages
+* Send/monitor messages from Azure IoT Hub to device (cloud-to-device message)
+* Device management (List, Create, Delete)
+* Discover devices connected via Ethernet, USB serial and WiFi
+* Deploy and run in remote machine
+
+## **Connected Service for Azure IoT Hub**
+
+### Resources
+
+[GitHub repository](https://github.com/Azure/azure-iot-hub-vs-cs)
+
+[Version for Visual Studio 2015](https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.ConnectedServiceforAzureIoTHub)
+
+[Version for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=ZimKalinowski.ConnectedServiceforAzureIoTHub)
+
+### What it can do?
+* create and remove devices
+* create sample code with embedded connectivity string
+* support for C# and C++ projects (Windows and Linux)
+
+### Disadvantages
+* can't create IoT Hub
+* no monitoring or sending messages to the device

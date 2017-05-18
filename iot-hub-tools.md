@@ -12,6 +12,8 @@
 |Delete Device from IoT Hub|YES|YES|YES|-|YES|YES|?|
 |Monitor D2C Messages|-|YES|YES|-|YES|-|-|
 |Send C2D Messages|-|YES|YES|-|YES|-|-|
+|Provision Device|-|-|-|-|-|-|YES|
+|Sample Code|-|-|-|YES|-|-|YES|
 
 
 ## **Azure Portal**

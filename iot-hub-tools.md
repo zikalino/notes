@@ -67,6 +67,14 @@
 
 ## Azure CLI
 
+This is a generic Azure command line tool.
+
+### What it can do?
+* Managing IoT Hubs
+* Managing devices
+* TBD - what else?
+
+### Disadvantages
 
 
 ## Azure IoT Toolkit for Visual Studio Code
@@ -120,3 +128,5 @@ Available from Visual Studio Code Marketplace
 
 ### Disadvantages
 * works only with Windows 10 IoT Core
+* no D2C message monitoring or C2D messages
+* no public source code

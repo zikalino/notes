@@ -6,7 +6,7 @@
 |Linux|YES|YES|-|-|YES|YES|-|
 |Mac OS|YES|YES|-|-|YES|YES|-|
 |Open Source|-|YES|YES|YES|YES|YES|-|
-|Built In Login|YES|YES|-|YES|YES|YES|YES|
+|Built In Login|YES|-|-|YES|YES|YES|YES|
 |Create IoT Hub|YES|YES|-|-|YES|YES|YES|
 |Create Device in IoT Hub|YES|YES|YES|YES|YES|YES|YES|
 |Delete Device from IoT Hub|YES|YES|YES|-|YES|YES|?|

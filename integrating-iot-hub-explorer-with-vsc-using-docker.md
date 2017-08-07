@@ -6,11 +6,32 @@ This document describes how to encapsulate command line tool called **IoT Hub Ex
 
 * Docker Runner extension
 
+## Step 1 - Create iothub-explorer image
 
-## Step 1 - Integrate with terminal
+I have created very simple image, based on **node** and just installed **iothub-explorer** on the top:
 
-## Step 2 - Add commands to command pallette
+    FROM node
+    MAINTAINER zikalino
 
-## Step 3 - Create menu
+    RUN npm install -g iothub-explorer
 
-## Step 4 - Capture & Display output
+    ENTRYPOINT [ "bash" ]
+ 
+## Step 2 - Integrate with terminal
+
+I have used **Docker Runner** to find and pull the image:
+
+**Alt+Ctrl+D** -> **Search Images** -> **iothub-explorer**
+
+Select **dockiot/iothub-explorer** -> **Pull & Pin to the Menu**
+
+
+
+
+## Step 3 - Add commands to command pallette
+
+## Step 4 - Create menu
+
+## Step 5 - Capture & Display output
+
+## What if user doesn't have Docker?

@@ -1,5 +1,12 @@
 # Notes on WebAssembly
 
+I have learned about Webassembly just a few days ago inspired by the title of following article:
+
+**WebAssembly and The Death of the App Store**
+
+https://hackernoon.com/webassembly-the-death-of-the-app-store-c9bc3f9557c8?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_content%3BOplrEweqSv6C6yig7CGm5Q%3D%3D
+
+
 ## What is WebAssembly?
 
 According to WikiPedia:

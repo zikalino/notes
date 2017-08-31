@@ -39,3 +39,69 @@ The only disadvantage is that the project is done in C# for ASP.NET. I would rat
 
 First step is obviously to clone, build and deploy the bot as it is just to see how the process works.
 
+Ok, so I just clone and build the project using Visual Studio 2017. No complications here.
+
+
+Now time for publishing. I have found following link:
+
+https://docs.microsoft.com/en-us/azure/app-service-web/app-service-web-get-started-dotnet
+
+I try to follow instructions, first I click on **Azure Bot** project and click **Publish**
+
+![Solution Explorer Publish](images/azure-bot-solution-explorer-publish.png)
+
+But then I would like to publish to **Azure App Service** and it's simply not there....
+It appeared I didn't have **Azure Development** workload installed, so if you don't have too, launch Visual Studio Installer to fix this problem.
+
+
+![Publish to App Service](images/azure-bot-publish-to-app-service.png)
+
+... ok, here i have actually published my bot, but it's not properly configured yet. So the next step will be registration.
+
+## Registering with Bot Framework
+
+To register my bot I just went to https://dev.botframework.com/bots. Here just clicked **Register** to start the process. 
+
+![Azure Bot Framework Register](images/azure-bot-framework-register.png)
+
+...then just filled basic information about Azure IoT Hub Bot
+
+It's important to remember to enter proper messaging handle. It should look like **https://azurebotiothub.azurewebsites.net/api/messages**
+Https and path are important. Otherwise the bot won't work. I made this mistake :-)
+
+
+Well, and press **Create Microsoft App ID and password**.
+
+![Azure Bot Framework Profile](images/azure-bot-framework-profile.png)
+
+Remember to copy **App ID** after it's generated, and click **Generate and app password to continue**.
+
+![Azure Bot Framework Profile](images/azure-bot-framework-generate-app-id-and-password.png)
+
+Remember to store **password** after it's generated.
+
+![Azure Bot Framework Profile](images/azure-bot-framework-new-password-generated.png)
+
+Now I just clicked **Register** to finalise, as I can add analytics later.
+
+![Azure Bot Framework Profile](images/azure-bot-framework-finalise.png)
+
+And voila! My bot is now created!
+
+![Azure Bot Framework Profile](images/azure-bot-framework-created.png)
+
+## Updating and Republishing the Bot
+
+Now, one more detail is important. As we already know **App ID** and **password** it has to be inserted into the application. Right file is **Web.config**. One mistake I made was inserting these strings into **app.config** I found somewhere else. So check carefully if you're using right config file. See below:
+
+![Azure Bot Framework Profile](images/azure-bot-update-app-config.png)
+
+As a last step before publishing I just wanted to modify welcome text:
+
+![Azure Bot Framework Profile](images/azure-bot-root-dialog.png)
+
+And finally go to **CHANNELS** and use **Test** functionality to test my bot.
+
+![Azure Bot Framework Profile](images/azure-bot-channels-test.png)
+
+

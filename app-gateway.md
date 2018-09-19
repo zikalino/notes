@@ -96,4 +96,32 @@ In final step we associate defined port with HTTP listener:
         name: sample_http_listener
 ```
 
-## Next Steps
+## Enabling HTTPS
+
+To enable HTTPS we need to change HTTP Listener configuration, we need to add SSL certificate to our app gateway:
+
+```
+    ssl_certificates:
+        - name: cert2
+          password: your-password
+          data: "{{ lookup('file', 'cert2.txt') }}"
+```
+
+
+
+```
+    frontend_ports:
+      - port: 443
+        name: ag_frontend_port
+```
+
+In final step we associate defined port with HTTP listener:
+
+```
+    http_listeners:
+      - frontend_ip_configuration: sample_gateway_frontend_ip_config
+        frontend_port: ag_frontend_port
+        name: sample_http_listener
+        protocol: https
+        ssl_certificate: cert2
+```

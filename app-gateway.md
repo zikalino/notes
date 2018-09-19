@@ -107,7 +107,7 @@ To enable HTTPS we need to change HTTP Listener configuration, we need to add SS
           data: "{{ lookup('file', 'cert2.txt') }}"
 ```
 
-
+modify (or add new) frontend port:
 
 ```
     frontend_ports:
@@ -115,7 +115,7 @@ To enable HTTPS we need to change HTTP Listener configuration, we need to add SS
         name: ag_frontend_port
 ```
 
-In final step we associate defined port with HTTP listener:
+And change protocol to **https** and refer our SSL certificate:
 
 ```
     http_listeners:
@@ -125,3 +125,9 @@ In final step we associate defined port with HTTP listener:
         protocol: https
         ssl_certificate: cert2
 ```
+
+## Connecting to Virtual Machine Scale Set
+
+In our initial examples we used two container instances as it was the simplest approach. In real scenario we would be using for instance VMSS.
+
+[Sample TBD]

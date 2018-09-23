@@ -27,41 +27,89 @@ sudo apt-get install mysql-client
 This sample illustrates how to create  MySQL database resources.
 It also shows how to use new facts modules with new flattened and simplified format.
 
+## Create a resource group
+A resource group is a logical container into which Azure resources are deployed and managed.  
+
+The following example creates a resource group named *myResourceGroupSQL* in the *eastus* location.
+
+``` yaml
+- hosts: localhost
+  vars:
+    resource_group: myResourceGroupSQL
+    location: eastus 
+  tasks:
+    - name: Create a resource group
+      azure_rm_resourcegroup:
+        name: "{{ resource_group }}"
+        location: "{{ location }}"
+```
+
+
 ## Creating SQL Server and Database
 
-Use the sample called **mysql_create.yml**. Run:
-
-```
-ansible-playbook mysql_create.yml
-```
-
-First task creates SQL Server:
+Following example creates MySQL server and database in myResourceGroupSQL:
 
 ``` yaml
-  - name: Create MySQL Server
-    azure_rm_mysqlserver:
-      resource_group: "{{ resource_group }}"
-      name: "{{ mysqlserver_name }}"
-      sku:
-        name: B_Gen5_1
-        tier: Basic
-      location: "{{ location }}"
-      version: 5.6
-      enforce_ssl: True
-      admin_username: "{{ admin_username }}"
-      admin_password: "{{ admin_password }}"
-      storage_mb: 51200
+- hosts: localhost
+  vars:
+    resource_group: myResourceGroupSQL
+    location: eastus
+    mysqlserver_name: mysql{{ rpfx }}
+    mysqldb_name: sqldbtest
+    admin_username: admxyz
+    admin_password: Abcpasswordxyz12!
+  tasks:
+    - name: Create MySQL Server
+      azure_rm_mysqlserver:
+        resource_group: "{{ resource_group }}"
+        name: "{{ mysqlserver_name }}"
+        sku:
+          name: B_Gen5_1
+          tier: Basic
+        location: "{{ location }}"
+        version: 5.6
+        enforce_ssl: no
+        admin_username: "{{ admin_username }}"
+        admin_password: "{{ admin_password }}"
+        storage_mb: 51200
+    - name: Create instance of MySQL Database
+      azure_rm_mysqldatabase:
+        resource_group: "{{ resource_group }}"
+        server_name: "{{ mysqlserver_name }}"
+        name: "{{ mysqldb_name }}"
 ```
 
-Second task creates a sample database in previously created SQL Server:
+## Configure firewall rule
+
+A server-level firewall rule allows an external application, such as the **mysql** command-line tool or MySQL Workbench to connect to your server through the Azure MySQL service firewall. 
+The following example creates a firewall rule called **extenalaccess** that allows connections from any external IP address. Substitute **startIpAddress** and **endIpAddress** with range of IP addresses that correspond to where you'll be connecting from. 
 
 ``` yaml
-  - name: Create instance of MySQL Database
-    azure_rm_mysqldatabase:
-      resource_group: "{{ resource_group }}"
-      server_name: "{{ mysqlserver_name }}"
-      name: "{{ mysqldb_name }}"
+- hosts: localhost
+  vars:
+    resource_group: myResourceGroupSQL
+    mysqlserver_name: mysql{{ rpfx }}
+  tasks:
+    - name: Open firewall to access MySQL Server from outside
+      azure_rm_resource:
+        api_version: '2017-12-01'
+        resource_group: "{{ resource_group }}"
+        provider: dbformysql
+        resource_type: servers
+        resource_name: "{{ os.servers[0].name }}"
+        subresource:
+          - type: firewallrules
+            name: externalaccess
+        body:
+          properties: 
+            startIpAddress: "0.0.0.0"
+            endIpAddress: "255.255.255.255"
 ```
+
+Note: We are using **azure_rm_resource** module to perform this task, which allows direct use of REST API, as appropriate module is not yet available in Ansible 2.7.
+
+Note: Connections to Azure Database for MySQL communicate over port 3306. If you try to connect from within a corporate network, outbound traffic over port 3306 might not be allowed. If this is the case, you can't connect to your server unless your IT department opens port 3306.
+
 
 ## Using facts to query MySQL Servers in current resoource group
 
@@ -104,8 +152,7 @@ Please note that output is very simple and contains only necessary fields. In ad
   ]
 ```
 
-
-## Using facts to query all the databases on the server
+## Using facts module to query all the databases on the server
 
 Following tasks will query all the databases from the first server on the list and dump the output:
 
@@ -155,30 +202,6 @@ Please note output for databases:
       }
   ]
 ```
-
-
-## Opening firewall
-
-Before MySQL Server can be accessed, it's necessary to add appropriate firewall rule. As there's still no module to do this in Ansible 2.7, we will use **azure_rm_resource** module as follows:
-
-``` yaml
-  - name: Open firewall to access MySQL Server from outside
-    azure_rm_resource:
-      api_version: '2017-12-01'
-      resource_group: "{{ resource_group }}"
-      provider: dbformysql
-      resource_type: servers
-      resource_name: "{{ os.servers[0].name }}"
-      subresource:
-        - type: firewallrules
-          name: externalaccess
-      body:
-        properties: 
-          startIpAddress: "0.0.0.0"
-          endIpAddress: "255.255.255.255"
-```
-
-Code above will give access to our MySQL Server from any IP Address.
 
 ## Testing access to MySQL server
 

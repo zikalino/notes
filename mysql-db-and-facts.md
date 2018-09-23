@@ -54,7 +54,7 @@ Following example creates MySQL server and database in myResourceGroupSQL:
   vars:
     resource_group: myResourceGroupSQL
     location: eastus
-    mysqlserver_name: mysql{{ rpfx }}
+    mysqlserver_name: mysqlservername
     mysqldb_name: sqldbtest
     admin_username: admxyz
     admin_password: Abcpasswordxyz12!
@@ -79,6 +79,8 @@ Following example creates MySQL server and database in myResourceGroupSQL:
         name: "{{ mysqldb_name }}"
 ```
 
+Note: Please note that **sqlserver_name** must be unique, otherwise operation may fail.
+
 ## Configure firewall rule
 
 A server-level firewall rule allows an external application, such as the **mysql** command-line tool or MySQL Workbench to connect to your server through the Azure MySQL service firewall. 
@@ -88,7 +90,7 @@ The following example creates a firewall rule called **extenalaccess** that allo
 - hosts: localhost
   vars:
     resource_group: myResourceGroupSQL
-    mysqlserver_name: mysql{{ rpfx }}
+    mysqlserver_name: mysqlservername
   tasks:
     - name: Open firewall to access MySQL Server from outside
       azure_rm_resource:
@@ -113,17 +115,32 @@ Note: Connections to Azure Database for MySQL communicate over port 3306. If you
 
 ## Using facts to query MySQL Servers in current resoource group
 
-Following tasks will query all the servers in specified resource group and dump teh output:
+Use following playbook to query SQL Servers in **myResourceGroupSQL** and subsequently all the databases on the server:
 
 ``` yaml
-  - name: Query MySQL Servers in current resource group
-    azure_rm_mysqlserver_facts:
-      resource_group: "{{ resource_group }}"
-    register: os
+- hosts: localhost
+  vars:
+    resource_group: myResourceGroupSQL
+    mysqlserver_name: mysqlservername
+  tasks:
+    - name: Query MySQL Servers in current resource group
+      azure_rm_mysqlserver_facts:
+        resource_group: "{{ resource_group }}"
+      register: os
 
-  - name: Dump MySQL Server facts
-    debug:
-      var: os
+    - name: Dump MySQL Server facts
+      debug:
+        var: os
+
+    - name: Query MySQL Databases
+      azure_rm_mysqldatabase_facts:
+        resource_group: "{{ resource_group }}"
+        server_name: "{{ os.servers[0].name }}"
+      register: od
+
+    - name: Dump MySQL Database Facts
+      debug:
+        var: od
 ```
 
 Please note that output is very simple and contains only necessary fields. In addition it's very similar to the main module input:
@@ -150,22 +167,6 @@ Please note that output is very simple and contains only necessary fields. In ad
           "version": "5.6"
       }
   ]
-```
-
-## Using facts module to query all the databases on the server
-
-Following tasks will query all the databases from the first server on the list and dump the output:
-
-``` yaml
-  - name: Query MySQL Databases
-    azure_rm_mysqldatabase_facts:
-      resource_group: "{{ resource_group }}"
-      server_name: "{{ os.servers[0].name }}"
-    register: do
-
-  - name: Dump MySQL Database Facts
-    debug:
-      var: do
 ```
 
 Please note output for databases:
@@ -205,16 +206,26 @@ Please note output for databases:
 
 ## Testing access to MySQL server
 
-Here we will just call **mysql** command (as specified in prerequisites).
+Here we will just call **mysql** command (as specified in prerequisites), to dump all the tables in the database:
 
-Following task simply iterates over list of the databases acquited previously and queries list of tables for each of them.
-
-This sample illustrates how to use MySQL Server / Database information obtained using appropriate facts modules
 
 ``` yaml
+- hosts: localhost
+  vars:
+    resource_group: myResourceGroupSQL
+    mysqlserver_name: mysqlservername
+    mysqldb_name: sqldbtest
+    admin_username: admxyz
+    admin_password: Abcpasswordxyz12!
+  tasks:
+    - name: Query MySQL Server details
+      azure_rm_mysqlserver_facts:
+        resource_group: "{{ resource_group }}"
+        name: "{{ mysqlserver_name }}"
+      register: os
+
     - name: Dump tables
-      shell: mysql --host={{ os.servers[0].fully_qualified_domain_name }} --user={{ os.servers[0].admin_username }}@{{ os.servers[0].name }} --password={{ admin_password }} --verbose {{ item.name }} -e "show tables"
-      with_items: "{{ do.databases }}"
+      shell: mysql --host={{ os.servers[0].fully_qualified_domain_name }} --user={{ admin_username }}@{{ mysqlserver_name }} --password={{ admin_password }} {{ mysqldb_name }} -e "show tables"
       register: output
 
     - debug:
